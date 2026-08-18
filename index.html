@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cookie</title>
+    <style>
+        .item {
+            display: none;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            overflow: hidden;
+            background-color: var(--background);
+        }
+
+        .item.active {
+            display: block;
+        }
+
+
+        .item .fundo {
+            width: 90%;
+            position: absolute;
+            top: 0;
+            z-index: 1
+        }
+
+        .item .title {
+            font-size: 12rem;
+            color: white;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            font-weight: bold;
+            text-align: center;
+
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 2;
+
+        }
+
+        .item .cookie {
+            width: 500px;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 3;
+        }
+
+        #prev,
+        #next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            background-color: #eee9;
+            border: 1px solid #eee9;
+            color: #eee;
+            font-size: x-large;
+            font-family: monospace;
+            cursor: pointer;
+            z-index: 4;
+            border-radius: 50%;
+
+        }
+
+        #prev {
+            left: 30px;
+
+        }
+
+        #next {
+            right: 30px;
+        }
+
+        @keyframes toActive {
+            from {
+                top: 100%;
+                opacity: 0;
+            }
+
+        }
+
+        .item.active img.fundo {
+            animation: toActive 0.5s ease-in-out 1;
+        }
+
+        .item.active title {
+            animation: toActive 0.5s ease-in-out 1;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <div class="item active" style="--background: #d7be9e">
+            <div class="title">CHOCOLATE</div>
+            <img src="Cookie chocolate fundo.png" class="fundo">
+            <img src="Cookie chocolate frente.png" class="cookie">
+        </div>
+
+        <div class="item" style="--background: #ea3d41">
+            <div class="title">MORANGO</div>
+            <img src="Cookie morango fundo.png" class="fundo">
+            <img src="Cookie morango frente.png" class="cookie">
+        </div>
+
+        <div class="item" style="--background: #ffffc5">
+            <div class="title">SICILIANO</div>
+            <img src="Cookie limão fundo.png" class="fundo">
+            <img src="Cookie limão frente.png" class="cookie">
+        </div>
+
+        <div class="arrow">
+            <button id="prev">←</button>
+            <button id="next">→</button>
+        </div>
+    </main>
+</body>
+<script>
+    let list = document.querySelectorAll('.item')
+    let next = document.getElementById('next')
+    let prev = document.getElementById('prev')
+
+    let count = list.length
+    let active = 0
+
+    next.onclick = () => {
+        let active01d = document.querySelector('.active')
+        active01d.classList.remove('active')
+
+
+        active = active >= count - 1 ? 0 : active + 1
+        list[active].classList.add('active')
+
+    }
+
+    prev.onclick = () => {
+        let active01d = document.querySelector('.active')
+        active01d.classList.remove('active')
+
+        active = active <= 0 ? count - 1 : active - 1
+        list[active].classList.add('active')
+    }
+
+
+
+
+</script>
+
+</html>
